@@ -23,4 +23,19 @@ public class Aluno {
         this.name = name;
     }
 
+    public void verifica(String name) {
+        if (name.equals("")) {
+            System.out.println("Erro");
+        } else {
+            this.name = name;
+        }
+    }
+    
+    public void verifica(int ra) {
+        if (ra < 0) {
+            System.out.println("ERRO!");
+        } else {
+            this.ra = ra;
+        }
+    }
 }
