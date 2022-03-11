@@ -7,6 +7,11 @@ public class Retangulo {
         this.altura = verifica(altura);
     }
 
+    public Retangulo () {
+        this.base = 1;
+        this.altura = 1;
+    }
+
     public int perimetro() {
         return ((altura * 2) + (base * 2));
     }
