@@ -3,17 +3,17 @@ public class Pessoa {
     private int idade;
     private boolean feliz;
     private long cpf;
-    private estadoCivil eCivil;
+    private App.estadoCivil eCivil;
 
     public Pessoa() {
         nome = "";
         idade = 0;
         feliz = false; 
         cpf = 0; 
-        eCivil = estadoCivil.SOLTEIRO;
+        eCivil = App.estadoCivil.SOLTEIRO;
     }
 
-    public Pessoa(String nome, int idade, Boolean feliz, long cpf, estadoCivil eCivil) {
+    public Pessoa(String nome, int idade, Boolean feliz, long cpf, App.estadoCivil eCivil) {
         this.nome = nome;
         this.idade = idade; 
         this.feliz = feliz;
@@ -21,18 +21,20 @@ public class Pessoa {
         this.eCivil = eCivil;
     }
 
-    public enum estadoCivil  {
-        SOLTEIRO,
-        CASADO,
-        DIVORCIADO,
-        VIUVO
-    } 
+    public void mostra() {
+        System.out.print("\n\n");
+        System.out.println("Nome:  " + nome);
+        System.out.println("Idade:  " + idade);
+        System.out.println("Está feliz:  " + feliz);
+        System.out.println("CPF:  " + cpf);
+        System.out.println("Estado civil:  " + eCivil);
+    }
     
-    public estadoCivil getECivil() {
+    public App.estadoCivil getECivil() {
         return this.eCivil;
     }
 
-    public void setECivil(estadoCivil eCivil) {
+    public void setECivil(App.estadoCivil eCivil) {
         this.eCivil = eCivil;
     }
 

@@ -2,7 +2,7 @@ public class Aluno extends Pessoa {
     private int ra;
     private boolean passouAno;
 
-    public Aluno(String nome, int idade, Boolean feliz, long cpf, estadoCivil eCivil, int ra, boolean passouAno) {
+    public Aluno(String nome, int idade, Boolean feliz, long cpf, App.estadoCivil eCivil, int ra, boolean passouAno) {
         super(nome, idade, feliz, cpf, eCivil);
         this.ra = ra;
         this.passouAno = passouAno;
@@ -12,6 +12,13 @@ public class Aluno extends Pessoa {
         super();
         this.ra = 0;
         this.passouAno = true;
+    }
+
+    @Override
+    public void mostra() {
+        super.mostra();
+        System.out.println("RA do aluno:  " + ra);
+        System.out.println("Reprovou:  " + !passouAno);
     }
 
     public int getRa() {

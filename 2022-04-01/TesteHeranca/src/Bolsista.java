@@ -1,7 +1,7 @@
 public class Bolsista extends Aluno {
     private double bolsa;
 
-    public Bolsista (String nome, int idade, Boolean feliz, long cpf, estadoCivil eCivil, int ra, boolean passouAno, double bolsa) {
+    public Bolsista (String nome, int idade, Boolean feliz, long cpf, App.estadoCivil eCivil, int ra, boolean passouAno, double bolsa) {
         super(nome, idade, feliz, cpf, eCivil, ra, passouAno);
         this.bolsa = bolsa;
     }
@@ -10,6 +10,11 @@ public class Bolsista extends Aluno {
         super();
         this.nome = "michael";
         this.bolsa = 0;
+    }
+
+    public void mostra() {
+        super.mostra();
+        System.out.println("Valor da bolsa:  " + bolsa);
     }
 
     public double getBolsa() {
