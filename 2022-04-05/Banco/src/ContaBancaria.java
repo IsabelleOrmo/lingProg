@@ -3,7 +3,6 @@ public class ContaBancaria{
     private int numConta;
     private double saldo;
     private static int qntContas = 1;
-    protected byte pog;
     
     // Construtor sem argumentos
     public ContaBancaria() {
@@ -19,11 +18,34 @@ public class ContaBancaria{
         numConta = qntContas;
         qntContas++;
     }
+
+    // Função de testes
+    public void testaConta() {
+        ContaBancaria contaTeste = this;
+
+        double saldoAntigo = contaTeste.getSaldo();
+        System.out.printf("\n\n\n\n\n---- TESTE DE MESA -----\n");
+        System.out.println("Nome do cliente:  " + contaTeste.getCliente());
+        System.out.println("Número da conta:  " + contaTeste.getNumConta());
+        System.out.println("Saldo do cliente:  " + contaTeste.getSaldo());
+        System.out.println("Realizado depósito de 500"); contaTeste.depositar(500);
+        System.out.println("Saldo atual:  " + contaTeste.getSaldo());
+        System.out.println("Realizado saque de 1000");
+        System.out.println("Quantidade sacada:  " + contaTeste.sacar(1000));
+        System.out.println("Saldo atual:  " + contaTeste.getSaldo());
+        System.out.println("Saldo alterado para -500"); contaTeste.setSaldo(-500);
+        System.out.println("Saldo atual:  " + contaTeste.getSaldo());
+        System.out.println("Saldo alterado para 50"); contaTeste.setSaldo(50);
+        System.out.println("Saldo atual:  " + contaTeste.getSaldo());
+        contaTeste.setSaldo(saldoAntigo);
+        System.out.println("Saldo retornado para o valor anterior.");
+        System.out.println("Saldo atual:  " + contaTeste.getSaldo());
+    }
     
     public double sacar(double valor) {
         valor = verifySaldo(valor);
 
-        if (valor > saldo || valor == 0) {
+        if (valor == 0 || valor > saldo) {
             System.out.println("Não é possível sacar.");
             return 0;
         }
@@ -45,7 +67,7 @@ public class ContaBancaria{
 
 
     // Um monte de set e get
-    public int getNumConta() {
+    public int getNumConta() { // Não é possível definir o número da conta manualmente
         return this.numConta;
     }
 

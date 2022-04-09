@@ -12,10 +12,26 @@ public class ContaEspecial extends ContaBancaria {
     }
 
     @Override
+    public void testaConta() {
+        super.testaConta();
+        ContaEspecial contaTeste = this;
+        System.out.println("Limite:  " + contaTeste.getLimite());
+        System.out.println("Saque no valor de 1000");
+        System.out.println("Valor do saque:  " + contaTeste.sacar(1000));
+        System.out.println("Saldo atual:  " + contaTeste.getSaldo());
+        System.out.println("Saque no valor de 1000");
+        System.out.println("Valor do saque:  " + contaTeste.sacar(1000));
+        System.out.println("Saldo atual:  " + contaTeste.getSaldo());
+        System.out.println("Saque no valor de 200");
+        System.out.println("Valor do saque:  " + contaTeste.sacar(200));
+        System.out.println("Saldo atual:  " + contaTeste.getSaldo());
+    }
+
+    @Override
     public double sacar(double valor) {
         valor = verifySaldo(valor);
 
-        if (valor > getSaldo() + limite || valor == 0) {
+        if (valor == 0 || valor > getSaldo() + limite) {
             System.out.println("Não é possível sacar.");
             return 0;
         } 
