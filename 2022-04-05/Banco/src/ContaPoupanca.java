@@ -17,7 +17,7 @@ public class ContaPoupanca extends ContaBancaria {
         setSaldo(getSaldo() * rendimento());
     }
 
-    private float rendimento() {
-        return (diaRendimento/100) + 1;
+    private static float rendimento() {
+        return diaRendimento/100F + 1;
     }
 }
