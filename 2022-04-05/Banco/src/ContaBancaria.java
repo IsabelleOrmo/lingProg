@@ -3,12 +3,14 @@ public class ContaBancaria{
     private int numConta;
     private double saldo;
     private static int qntContas = 1;
+    protected byte pog;
     
     // Construtor sem argumentos
     public ContaBancaria() {
         cliente = "";
-        numConta = 0;
+        numConta = qntContas;
         saldo = 0;
+        qntContas++;
     }
     // Construtor com argumentos
     public ContaBancaria(String cliente, double saldo) {
@@ -21,7 +23,7 @@ public class ContaBancaria{
     public double sacar(double valor) {
         valor = verifySaldo(valor);
 
-        if (valor > saldo) {
+        if (valor > saldo || valor == 0) {
             System.out.println("Não é possível sacar.");
             return 0;
         }
@@ -47,10 +49,10 @@ public class ContaBancaria{
         return this.numConta;
     }
 
-    public String getcliente() {
+    public String getCliente() {
         return this.cliente;
     }
-    public void setcliente(String cliente) {
+    public void setCliente(String cliente) {
         this.cliente = cliente;
     }
 
@@ -59,5 +61,10 @@ public class ContaBancaria{
     }
     public void setSaldo(double saldo) {
         this.saldo = verifySaldo(saldo);
+    }
+    protected void setSaldoUnverified(double saldo) {
+        // Algo me diz que isso seria um baita de um problema num programa sério
+        // To quase desistindo e usando protected mesmo 
+        this.saldo = saldo;
     }
 }
