@@ -13,7 +13,6 @@ public class Cirurgiao extends Medico {
 
     @Override
     public void tratarPaciente() {
-        // TODO Auto-generated method stub
         super.tratarPaciente();
         System.out.print("A cirurgia será amanhã de manhã.");
         fazerIncisao();
