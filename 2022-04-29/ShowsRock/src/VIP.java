@@ -1,13 +1,16 @@
 public class VIP extends Ingresso {
     private static int valorAdicional = 100;
+    private static int qntdVIP = 0;
 
     //construtores 
     public VIP(int valor) {
         super(valor);
+        qntdVIP++;
     }
 
     public VIP() {
         super();
+        qntdVIP++;
     }   
     
     //get set 
@@ -24,11 +27,12 @@ public class VIP extends Ingresso {
         VIP.valorAdicional = valorAdicional;
     }
 
-    /*
+    public static int getQntdVIP() {
+        return qntdVIP; 
+    }
+
     @Override
     public void imprimeValor() {
-        System.out.println("O preço do ingresso é:  " + getValor());
+        System.out.println("O preço do ingresso VIP é:  " + (getValor() + valorAdicional));
     } 
-    */  
-
 }
