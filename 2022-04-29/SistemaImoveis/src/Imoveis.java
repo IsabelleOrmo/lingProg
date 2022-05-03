@@ -21,15 +21,43 @@ public abstract class Imoveis {
     }
 
 
-    // Imoveis
+    // Métodos
     public void imprimirValores() {
-        System.out.printf("Valor do imóvel:  R$ %.2f", valor);
-        System.out.println("Endereço:  " + endereco);
-        System.out.println("Código do imóvel:  " + codImovel);
+        System.out.println("Código do imóvel:  " + getCodImovel());
+        System.out.printf("Valor do imóvel:  R$ %.2f\n", getValor());
+        System.out.println("Endereço:  " + getEndereco());
     }
 
-    public static void calculaValor(ArrayList<Imoveis> listaImoveis) {
+    public static void showNovo(ArrayList<Imoveis> listaImoveis) {
+        for (Imoveis imovel : listaImoveis) {
+            if (imovel instanceof Novo) {
+                Novo imovelNovo = (Novo) imovel;
+                imovelNovo.imprimirValores();
+            }
+        }
+    }
 
+    public static void showVelho(ArrayList<Imoveis> listaImoveis) {
+        for (Imoveis imovel : listaImoveis) {
+            if (imovel instanceof Usado) {
+                Usado usadoImovel = (Usado) imovel;
+                usadoImovel.imprimirValores();
+            }
+        }
+    }
+
+    public static void showAll(ArrayList<Imoveis> listaImoveis) {
+        for (Imoveis imovel : listaImoveis) {
+            if (imovel instanceof Novo) {
+                Novo imovelNovo = (Novo) imovel;
+                imovelNovo.imprimirValores();
+            } 
+
+            if (imovel instanceof Usado) {
+                Usado usadoImovel = (Usado) imovel;
+                usadoImovel.imprimirValores();
+            }   
+        }
     }
 
 
@@ -48,6 +76,10 @@ public abstract class Imoveis {
 
     public void setValor(float valor) {
         this.valor = valor;
+    }
+
+    public int getCodImovel() {
+        return codImovel;
     }
 
     public static int getQntImoveis() {
