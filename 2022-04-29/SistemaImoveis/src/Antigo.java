@@ -1,13 +1,13 @@
-public class Usado extends Imoveis {
+public class Antigo extends Imoveis {
     private float desconto;
 
     // Construtores
-    public Usado() {
+    public Antigo() {
         super();
         desconto = 0;
     }
 
-    public Usado(String endereco, float valor, float desconto) {
+    public Antigo(String endereco, float valor, float desconto) {
         super(endereco, valor);
         this.desconto = desconto;
     }
@@ -16,10 +16,10 @@ public class Usado extends Imoveis {
     // Métodos
     @Override
     public void imprimirValores() {
-        System.out.println("Imóvel USADO");
+        System.out.println("Imóvel Antigo");
         super.imprimirValores();
-        System.out.printf("Valor base:  R$ 2.f\n", super.getValor());
-        System.out.printf("Valor do desconto:  R$ 2.f\n\n\n\n", getDesconto());
+        System.out.printf("Valor base:  R$ %.2f\n", super.getValor());
+        System.out.printf("Valor do desconto:  R$ %.2f\n\n\n\n", getDesconto());
     }
 
 

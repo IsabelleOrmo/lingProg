@@ -39,8 +39,8 @@ public abstract class Imoveis {
 
     public static void showVelho(ArrayList<Imoveis> listaImoveis) {
         for (Imoveis imovel : listaImoveis) {
-            if (imovel instanceof Usado) {
-                Usado usadoImovel = (Usado) imovel;
+            if (imovel instanceof Antigo) {
+                Antigo usadoImovel = (Antigo) imovel;
                 usadoImovel.imprimirValores();
             }
         }
@@ -53,8 +53,8 @@ public abstract class Imoveis {
                 imovelNovo.imprimirValores();
             } 
 
-            if (imovel instanceof Usado) {
-                Usado usadoImovel = (Usado) imovel;
+            if (imovel instanceof Antigo) {
+                Antigo usadoImovel = (Antigo) imovel;
                 usadoImovel.imprimirValores();
             }   
         }

@@ -18,8 +18,8 @@ public class Novo extends Imoveis {
     public void imprimirValores() {
         System.out.println("Imóvel NOVO");
         super.imprimirValores();
-        System.out.printf("Valor base:  R$ 2.f\n", super.getValor());
-        System.out.printf("Valor adicional:  R$ 2.f\n\n\n\n", getValorAdicional());
+        System.out.printf("Valor base:  R$ %.2f\n", super.getValor());
+        System.out.printf("Valor adicional:  R$ %.2f\n\n\n\n", getValorAdicional());
     }
 
     
