@@ -16,7 +16,6 @@ public class App {
         listaImoveis.add(usado2);
         listaImoveis.add(new Novo("Rotatória das Decepções", 23000, 2000));
 
-
         // Exemplo de uso de Iterators, com a booleana "hasNext() e a função remove"
         Iterator<Imoveis> it = listaImoveis.iterator();
 
