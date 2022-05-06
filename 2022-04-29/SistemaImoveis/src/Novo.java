@@ -1,4 +1,4 @@
-public class Novo extends Imoveis {
+public class Novo extends Imovel {
     private float valorAdicional;
     
     // Construtores

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public abstract class Imoveis {
+public abstract class Imovel {
     private String endereco;
     private float valor;
     private static int qntImoveis = 0;
@@ -8,13 +8,13 @@ public abstract class Imoveis {
 
 
     // Construtores
-    public Imoveis() {
+    public Imovel() {
         endereco = "";
         valor = 0;
         codImovel = ++qntImoveis;
     }
 
-    public Imoveis(String endereco, float valor) {
+    public Imovel(String endereco, float valor) {
         this.endereco = endereco; 
         this.valor = valor;
         codImovel = ++qntImoveis;
@@ -28,8 +28,8 @@ public abstract class Imoveis {
         System.out.println("Endereço:  " + getEndereco());
     }
 
-    public static void showNovo(ArrayList<Imoveis> listaImoveis) {
-        for (Imoveis imovel : listaImoveis) {
+    public static void showNovo(ArrayList<Imovel> listaImoveis) {
+        for (Imovel imovel : listaImoveis) {
             if (imovel instanceof Novo) {
                 Novo imovelNovo = (Novo) imovel;
                 imovelNovo.imprimirValores();
@@ -37,8 +37,8 @@ public abstract class Imoveis {
         }
     }
 
-    public static void showVelho(ArrayList<Imoveis> listaImoveis) {
-        for (Imoveis imovel : listaImoveis) {
+    public static void showVelho(ArrayList<Imovel> listaImoveis) {
+        for (Imovel imovel : listaImoveis) {
             if (imovel instanceof Antigo) {
                 Antigo usadoImovel = (Antigo) imovel;
                 usadoImovel.imprimirValores();
@@ -46,8 +46,8 @@ public abstract class Imoveis {
         }
     }
 
-    public static void showAll(ArrayList<Imoveis> listaImoveis) {
-        for (Imoveis imovel : listaImoveis) {
+    public static void showAll(ArrayList<Imovel> listaImoveis) {
+        for (Imovel imovel : listaImoveis) {
             if (imovel instanceof Novo) {
                 Novo imovelNovo = (Novo) imovel;
                 imovelNovo.imprimirValores();

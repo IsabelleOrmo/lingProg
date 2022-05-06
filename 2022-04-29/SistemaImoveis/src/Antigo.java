@@ -1,4 +1,4 @@
-public class Antigo extends Imoveis {
+public class Antigo extends Imovel {
     private float desconto;
 
     // Construtores
