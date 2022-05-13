@@ -18,8 +18,7 @@ public class Assalariado extends Empregado {
     // Métodos da classe
     @Override
     public double vencimento() {
-        // Eu não tenho ideia de como eu calcularia isso.
-        return 0;
+        return salario;
     }
 
 

@@ -21,7 +21,7 @@ public class Horista extends Empregado {
     // Métodos da classe
     @Override
     public double vencimento() {
-        return 0; // aaaaaaaaaaaaaaaaaaaa
+        return horasTrabalhadas * precoHora;
     }
 
 
