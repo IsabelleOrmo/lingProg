@@ -58,3 +58,24 @@ Assim, a interface recebe uma instância com as implementações de seus método
 AreaCalculavel a1 = new Quadrado();
 AreaCalculavel a2 = new Circulo();
 ```
+
+---
+
+(13/05)
+
+### Assunto final da aula de interfaces
+
+Nesse caso, não é possível acessar os getters e setters de `Quadrado()` e `Circulo()`, já que AreaCalculavel não os tem.
+Portanto, o ideal é realizar um casting para acessar, ou, atribuir pelo construtor, assim, os métodos de cálculo de área poderão acessar o valor do lado e do raio.
+
+```java
+AreaCalculavel a1 = new Quadrado(lado: 10);
+AreaCalculavel a2 = new Circulo(raio: 15);
+
+// As variáveis locais foram atribuídas nos construtores.
+
+System.out.println("Área do quadrado:  " + a1.calcularArea());
+System.out.println("Área do círculo:  " + a2.calcularArea()); 
+
+// O cálculo funcionará perfeitamente para ambos os casos, usando a variável e segundo os métodos calcularArea da interface, cuja implementação foi definida dentro das classes Quadrado e Circulo.
+```
