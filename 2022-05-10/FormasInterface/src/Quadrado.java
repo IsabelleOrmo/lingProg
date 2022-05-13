@@ -1,3 +1,5 @@
+import interfaces.Forma2D;
+
 public class Quadrado extends FormaGeometrica implements Forma2D {
     // Atributos da classe
     private double lado;

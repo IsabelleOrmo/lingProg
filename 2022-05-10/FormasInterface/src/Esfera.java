@@ -1,3 +1,6 @@
+import interfaces.Forma3D;
+import interfaces.FormaEsfera;
+
 public class Esfera implements Forma3D, FormaEsfera {
     // Atributos
     private double raio;

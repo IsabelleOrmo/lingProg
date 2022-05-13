@@ -1,3 +1,5 @@
+import interfaces.Forma2D;
+
 public class App {
     public static void main(String[] args) throws Exception {
         Esfera es1 = new Esfera();

@@ -1,3 +1,4 @@
+package interfaces;
 public interface FormaEsfera {
     public double calculaCunha(double angulo);
     public double calculaFuso(double angulo);
