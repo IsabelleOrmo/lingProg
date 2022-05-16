@@ -31,15 +31,13 @@ public abstract class Empregado {
         return sobrenome + ", " + nome;
     }
 
-    public static double totalVendas(ArrayList<Empregado> listaEmpregados) {
+    public static double totalVencimento(ArrayList<Empregado> listaEmpregados) {
         double sumVendas = 0;
         
         for (Empregado emp : listaEmpregados) {
-            if (emp instanceof Comissionado) {
-                Comissionado com = (Comissionado) emp;
-                sumVendas += com.getTotalVenda() - (com.getTaxaComissao() * com.getTotalVenda());
-            }
+            sumVendas += emp.vencimento();
         }
+
         return sumVendas;
     }
 
