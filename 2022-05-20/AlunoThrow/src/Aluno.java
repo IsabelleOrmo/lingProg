@@ -11,10 +11,12 @@ public class Aluno {
     public void setRa(int ra) {
         try {
             if (ra < 0)
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("O RA deve ser positivo.");
         } catch(IllegalArgumentException e) {
-            System.out.println("O RA deve ser positivo.");
+            System.out.println(e.getMessage());
             ra = 0;
+        } catch(RuntimeException e) {
+            System.out.println("Sabe lá deus que erro foi esse");
         } finally {
             this.ra = ra;
         }
@@ -25,7 +27,11 @@ public class Aluno {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome.isEmpty()) {
+            throw new EmptyStringException();
+        } else {
+            this.nome = nome;
+        }
     }
     
 }
