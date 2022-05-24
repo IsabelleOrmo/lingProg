@@ -1,6 +1,6 @@
-import interfaces.Forma2D;
+import interfaces.AreaCalculavel;
 
-public class Retangulo extends FormaGeometrica implements Forma2D {
+public class Retangulo extends FormaGeometrica implements AreaCalculavel {
     // Argumentos da classe
     private double lado1;
     private double lado2;
@@ -9,8 +9,7 @@ public class Retangulo extends FormaGeometrica implements Forma2D {
     // Construtor
     public Retangulo(double lado1, double lado2) {
         setLado(lado1, lado2);
-
-        
+        setArea(calcularArea());
     }
 
 
@@ -18,11 +17,6 @@ public class Retangulo extends FormaGeometrica implements Forma2D {
     @Override
     public double calcularArea() {
         return lado1 * lado2;
-    }
-
-    @Override
-    public double calcularPerimetro() {
-        return (lado1 * 2) + (lado2 * 2);
     }
 
 

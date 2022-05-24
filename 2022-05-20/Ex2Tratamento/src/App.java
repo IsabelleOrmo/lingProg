@@ -1,11 +1,23 @@
-import interfaces.Forma2D;
+import interfaces.AreaCalculavel;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // TODO: Fazer os try e catch na main para testar o programa
-        Forma2D forma1 = new Quadrado(10);
+        System.out.println("\n\nCálculo do quadrado.");
+        try {
+            AreaCalculavel forma1 = new Quadrado(-17);
+            System.out.println("Área do quadrado:  " + forma1.calcularArea());
+        } catch(IllegalArgumentException e) {
+            System.out.println("Erro:  " + e.getMessage());
+            e.printStackTrace();
+        }
 
-
-        System.out.println("Área do quadrado:  " + forma1.calcularArea());
+        System.out.println("\n\nCálculo do retângulo.");
+        try {
+            AreaCalculavel forma2 = new Retangulo(4, 4);
+            System.out.println("Área do retângulo:  " + forma2.calcularArea());
+        } catch(IllegalArgumentException e) {
+            System.out.println("Erro:  " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

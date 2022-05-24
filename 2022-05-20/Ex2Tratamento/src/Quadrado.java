@@ -1,6 +1,6 @@
-import interfaces.Forma2D;
+import interfaces.AreaCalculavel;
 
-public class Quadrado extends FormaGeometrica implements Forma2D {
+public class Quadrado extends FormaGeometrica implements AreaCalculavel {
     // Atributos da classe
     private double lado;
 
@@ -8,8 +8,6 @@ public class Quadrado extends FormaGeometrica implements Forma2D {
     // Construtores da classe
     public Quadrado(double lado) {
         setLado(lado);
-
-        setPerimetro(calcularPerimetro());
         setArea(calcularArea());
     }
 
@@ -19,12 +17,6 @@ public class Quadrado extends FormaGeometrica implements Forma2D {
     public double calcularArea() {
         return getLado() * getLado();
     }
-
-    @Override
-    public double calcularPerimetro() {
-        return getLado() * 4;
-    }
-
     
     // Getters e setters
     public double getLado() {
@@ -32,8 +24,8 @@ public class Quadrado extends FormaGeometrica implements Forma2D {
     }
 
     public void setLado(double lado) {
-        if (lado >= 0) {
-            throw new IllegalArgumentException("“Valor inválido, o valor esperado é maior que 0 (zero)");
+        if (lado <= 0) {
+            throw new IllegalArgumentException("Valor inválido, o valor esperado é maior que 0 (zero)");
         } else {
             this.lado = lado;
         }
