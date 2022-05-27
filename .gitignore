@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/java,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=java,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/java,visualstudiocode,netbeans
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,visualstudiocode,netbeans
 
 ### Java ###
 # Compiled class file
@@ -28,6 +28,16 @@
 hs_err_pid*
 replay_pid*
 
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -42,11 +52,6 @@ replay_pid*
 # Built Visual Studio Code Extensions
 *.vsix
 
-# User especified
-*.vscode
-*lib
-*bin
-
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
@@ -58,4 +63,7 @@ replay_pid*
 # Ignore code-workspaces
 *.code-workspace
 
-# End of https://www.toptal.com/developers/gitignore/api/java,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/java,visualstudiocode,netbeans
+
+
+
