@@ -2,9 +2,9 @@ package src;
 import java.util.Scanner;
 
 public class Funcionario {
-    String nome;
-    String sobrenome;
-    double salarioMensal;
+    private String nome;
+    private String sobrenome;
+    private double salarioMensal;
 
     public Funcionario() {
         nome = "";
