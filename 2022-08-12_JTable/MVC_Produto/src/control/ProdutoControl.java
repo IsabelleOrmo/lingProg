@@ -23,7 +23,7 @@ public class ProdutoControl {
                 return Optional.of(produto);
         }
 
-        Optional.empty();
+        return Optional.empty();
     }
 
     public Optional<Produto> buscaDesc(String descricao) {
@@ -32,6 +32,6 @@ public class ProdutoControl {
                 return Optional.of(produto);
         }
 
-        Optional.empty();
+        return Optional.empty();
     }
 }
