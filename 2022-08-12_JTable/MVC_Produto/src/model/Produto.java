@@ -36,7 +36,7 @@ public class Produto {
 
     
 	private void setCodigo(String codigo) {
-		this.codigo = codigo;
+            this.codigo = codigo;
 	}
 
 	private void setDescricao(String descricao) {

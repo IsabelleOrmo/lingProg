@@ -250,7 +250,7 @@ public class ViewAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void tabelaAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaAlunosMouseClicked
-        txtNome.setText(tabelaAlunos.getValueAt(tabelaAlunos.getSelectedRow(), 2).toString());
+        txtBusca.setText(tabelaAlunos.getValueAt(tabelaAlunos.getSelectedRow(), 2).toString());
     }//GEN-LAST:event_tabelaAlunosMouseClicked
 
     /**
