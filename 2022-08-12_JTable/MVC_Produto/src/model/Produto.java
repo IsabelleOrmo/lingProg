@@ -32,11 +32,9 @@ public class Produto {
     public double getPreco() {
         return preco;
     }
-
-
-    
-	private void setCodigo(String codigo) {
-            this.codigo = codigo;
+	
+    private void setCodigo(String codigo) {
+        this.codigo = codigo;
 	}
 
 	private void setDescricao(String descricao) {
@@ -46,4 +44,9 @@ public class Produto {
 	public void setPreco(double preco) {
 		this.preco = preco;
 	}
+
+    @Override
+    public String toString() {
+        return "Produto:\n" + "Código:  " + getCodigo() + "\nDescrição:  " + getDescricao() + "\nPreço:  " + getPreco();
+    }
 }
