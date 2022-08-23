@@ -35,7 +35,7 @@ public class AlunoControl {
         return inst;
     }
     
-    public DefaultTableModel setModel() {
+    public DefaultTableModel getModel() {
         DefaultTableModel data = new DefaultTableModel();
         data.setNumRows(0);
         data.addColumn("ID");

@@ -48,7 +48,7 @@ public class ViewAluno extends javax.swing.JFrame {
     }
 
     private void setTable() {
-        tabelaAlunos.setModel(lstAluno.setModel());
+        tabelaAlunos.setModel(lstAluno.getModel());
     }
 
     private void trim() {
