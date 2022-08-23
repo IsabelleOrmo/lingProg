@@ -42,5 +42,14 @@ public class AlunoDAO {
         smt.setInt(1, aluno.getRa());
         smt.setString(2, aluno.getNome());
         smt.execute();
+        smt.close();
+    }
+
+    public void removeAluno(int ra) throws SQLException {
+        PreparedStatement smt = (PreparedStatement) sqlConnection.prepareStatement("DELETE FROM TJavaAluno WHERE RA = ?");
+        
+        smt.setInt(1, ra);
+        smt.execute();
+        smt.close();
     }
 }

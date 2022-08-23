@@ -6,30 +6,36 @@
 package view;
 
 import control.AlunoControl;
-import java.util.ArrayList;
+
+import java.sql.SQLException;
 import java.util.NoSuchElementException;
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Aluno;
+import java.util.regex.*;
 
 /**
  *
  * @author aluno
  */
 public class ViewAluno extends javax.swing.JFrame {
-    private AlunoControl lstAluno;
-    private DefaultTableModel data;
+    private final AlunoControl lstAluno;
+    private final DefaultTableModel data;
 
     /**
      * Creates new form ViewAluno
      */
-    public ViewAluno() {
-        lstAluno = AlunoControl.getInstance();
+    public ViewAluno() throws SQLException {
+        try {
+            lstAluno = AlunoControl.getInstance();
+        } catch (SQLException e) {
+            System.out.println("Impossível realizar a conexão.\n" + e.getMessage());
+            throw e;
+        }
         initComponents();
         
         data = new DefaultTableModel();
-        tabelaAlunos.setModel(data);
+        tableInit();
     }
     
     private void tableInit() {
@@ -39,6 +45,16 @@ public class ViewAluno extends javax.swing.JFrame {
         data.addColumn("RA");
         
         tabelaAlunos.setModel(data);
+    }
+
+    private void setTable() {
+        tabelaAlunos.setModel(lstAluno.setModel());
+    }
+
+    private void trim() {
+        txtNome.setText(txtNome.getText().trim());
+        txtRA.setText(txtNome.getText().trim());
+        txtBusca.setText(txtBusca.getText().trim());
     }
     
     private void cls() {
@@ -221,16 +237,43 @@ public class ViewAluno extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRAActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        trim();
+        
+        if (txtNome.getText().isEmpty() && txtRA.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha ambos os campos antes de cadastrar.");
+            txtNome.requestFocus();
+            return;
+        } else if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha o campo nome para cadastrar.");
+            txtNome.requestFocus();
+            return;
+        } else if (txtRA.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor, preencha o campo RA para cadastrar.");
+            txtRA.requestFocus();
+            return;
+        }
+
+        if (Pattern.compile("\\D").matcher(txtRA.getText()).find()) {
+            JOptionPane.showMessageDialog(null, "O RA deve conter somente números.");
+            txtRA.requestFocus();
+            return;
+        } else if (Pattern.compile("\\d{6}").matcher(txtRA.getText()).matches()) {
+            JOptionPane.showMessageDialog(null, "O campo RA deve ser composto por somente seis números.");
+            txtRA.requestFocus();
+            return;
+        }
+
         int ra = Integer.parseInt(txtRA.getText().trim());
         String nome = txtNome.getText().trim();
         
         lstAluno.cadastrarAluno(ra, nome);
         
-        tabelaAlunos.setModel(lstAluno.setModel());
+        setTable();
         cls();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        trim();
         try {
 //            Aluno al = lstAluno.buscaRA(Integer.parseInt(tabelaAlunos.getValueAt(tabelaAlunos.getSelectedRow(), 2).toString())).get();
               Aluno al = lstAluno.buscaRA(Integer.parseInt(txtBusca.getText())).get();
@@ -242,10 +285,14 @@ public class ViewAluno extends javax.swing.JFrame {
 
     private void btnRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoverActionPerformed
 //        lstAluno.removerRA(Integer.parseInt(tabelaAlunos.getValueAt(tabelaAlunos.getSelectedColumn, WIDTH))
+        trim();
         try {
             lstAluno.removerRA(Integer.parseInt(txtBusca.getText()));
+            setTable();
         } catch (NoSuchElementException e) {
-            JOptionPane.showMessageDialog(null, "RA não encontrado");
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         } catch (Exception e) {}
     }//GEN-LAST:event_btnRemoverActionPerformed
 
@@ -283,7 +330,11 @@ public class ViewAluno extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewAluno().setVisible(true);
+                try {
+                    new ViewAluno().setVisible(true);
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
         });
     }

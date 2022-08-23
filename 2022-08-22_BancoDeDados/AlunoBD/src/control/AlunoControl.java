@@ -5,10 +5,13 @@
  */
 package control;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import javax.swing.table.DefaultTableModel;
 import model.Aluno;
+import model.DAO.AlunoDAO;
 
 /**
  *
@@ -17,12 +20,14 @@ import model.Aluno;
 public class AlunoControl {
     private ArrayList<Aluno> lstAluno;
     private static AlunoControl inst;
+    private final AlunoDAO DAO;
     
-    private AlunoControl() {
+    private AlunoControl() throws SQLException {
         lstAluno = new ArrayList<Aluno>();
+        DAO = AlunoDAO.getInstance();
     }
     
-    public static AlunoControl getInstance() {
+    public static AlunoControl getInstance() throws SQLException {
         if (inst == null) {
             inst = new AlunoControl();
         }
@@ -46,7 +51,9 @@ public class AlunoControl {
     
     public boolean cadastrarAluno (int ra, String nome) {
         try {
-            lstAluno.add(new Aluno(ra, nome));
+            Aluno al = new Aluno(ra, nome);
+            DAO.insertAluno(al);
+            lstAluno.add(al);
             return true;
         } catch (Exception e) {
             return false;
@@ -55,7 +62,7 @@ public class AlunoControl {
     
     public ArrayList<Aluno> toList() {
         return this.lstAluno;
-    }
+    }   
     
     public Optional<Aluno> buscaRA(int ra) {
         for (Aluno al : lstAluno) {
@@ -76,10 +83,20 @@ public class AlunoControl {
     }
     
     public boolean removerNome(String nome) {
-        return lstAluno.remove(buscaNome(nome));
+        return lstAluno.remove(buscaNome(nome).get());
     }
     
-    public boolean removerRA(int ra) {
-        return lstAluno.remove(buscaRA(ra));
+    public void removerRA(int ra) throws SQLException {
+        try {
+            lstAluno.remove(buscaRA(ra).get());
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("Impossível remover:  RA não encontrado.");
+        }
+
+        try {
+            DAO.removeAluno(ra);
+        } catch (SQLException e) {
+            throw new SQLException("Houve um erro na conexão SQL:  " + e.getMessage());
+        }
     }
 }
