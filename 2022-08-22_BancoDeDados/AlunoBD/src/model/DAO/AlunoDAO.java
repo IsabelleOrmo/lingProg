@@ -45,10 +45,12 @@ public class AlunoDAO {
         smt.close();
     }
 
-    public void removeAluno(int ra) throws SQLException {
+    public void removeAluno(String ra) throws SQLException, IllegalArgumentException {
+        final int iRA = Aluno.checkRA(ra);
+
         PreparedStatement smt = (PreparedStatement) sqlConnection.prepareStatement("DELETE FROM TJavaAluno WHERE RA = ?");
         
-        smt.setInt(1, ra);
+        smt.setInt(1, iRA);
         smt.execute();
         smt.close();
     }

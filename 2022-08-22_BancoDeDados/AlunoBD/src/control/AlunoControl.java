@@ -49,14 +49,13 @@ public class AlunoControl {
         return data;
     }
     
-    public boolean cadastrarAluno (int ra, String nome) {
+    public void cadastrarAluno (String ra, String nome) throws SQLException, IllegalArgumentException {
+        Aluno al = new Aluno(ra, nome);
         try {
-            Aluno al = new Aluno(ra, nome);
             DAO.insertAluno(al);
             lstAluno.add(al);
-            return true;
-        } catch (Exception e) {
-            return false;
+        } catch (SQLException e) {
+            throw new SQLException("Impossível cadastrar: Erro no banco de dados.\n" + e.getMessage());
         }
     }
     
@@ -64,9 +63,10 @@ public class AlunoControl {
         return this.lstAluno;
     }   
     
-    public Optional<Aluno> buscaRA(int ra) {
+    public Optional<Aluno> buscaRA(String ra) throws IllegalArgumentException {
+        final int iRA = Aluno.checkRA(ra);
         for (Aluno al : lstAluno) {
-            if (al.getRa() == ra)
+            if (al.getRa() == iRA)
                 return Optional.of(al);
         }
         
@@ -86,7 +86,7 @@ public class AlunoControl {
         return lstAluno.remove(buscaNome(nome).get());
     }
     
-    public void removerRA(int ra) throws SQLException {
+    public void removerRA(String ra) throws SQLException, IllegalArgumentException {
         try {
             lstAluno.remove(buscaRA(ra).get());
         } catch (NoSuchElementException e) {

@@ -12,7 +12,6 @@ import java.util.NoSuchElementException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Aluno;
-import java.util.regex.*;
 
 /**
  *
@@ -253,20 +252,16 @@ public class ViewAluno extends javax.swing.JFrame {
             return;
         }
 
-        if (Pattern.compile("\\D").matcher(txtRA.getText()).find()) {
-            JOptionPane.showMessageDialog(null, "O RA deve conter somente números.");
-            txtRA.requestFocus();
-            return;
-        } else if (Pattern.compile("\\d{6}").matcher(txtRA.getText()).matches()) {
-            JOptionPane.showMessageDialog(null, "O campo RA deve ser composto por somente seis números.");
-            txtRA.requestFocus();
-            return;
-        }
-
-        int ra = Integer.parseInt(txtRA.getText().trim());
         String nome = txtNome.getText().trim();
+        String ra = txtRA.getText().trim();
         
-        lstAluno.cadastrarAluno(ra, nome);
+        try {
+            lstAluno.cadastrarAluno(ra, nome);
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
         
         setTable();
         cls();
@@ -274,9 +269,15 @@ public class ViewAluno extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         trim();
+
+        if (txtBusca.getText().isEmpty()) {
+            txtBusca.requestFocus();
+            return;
+        }
+
         try {
 //            Aluno al = lstAluno.buscaRA(Integer.parseInt(tabelaAlunos.getValueAt(tabelaAlunos.getSelectedRow(), 2).toString())).get();
-              Aluno al = lstAluno.buscaRA(Integer.parseInt(txtBusca.getText())).get();
+              Aluno al = lstAluno.buscaRA(txtBusca.getText()).get();
             showDialog(al);
         } catch (NoSuchElementException e) {
             JOptionPane.showMessageDialog(null, "RA não encontrado");
@@ -287,7 +288,7 @@ public class ViewAluno extends javax.swing.JFrame {
 //        lstAluno.removerRA(Integer.parseInt(tabelaAlunos.getValueAt(tabelaAlunos.getSelectedColumn, WIDTH))
         trim();
         try {
-            lstAluno.removerRA(Integer.parseInt(txtBusca.getText()));
+            lstAluno.removerRA(txtBusca.getText());
             setTable();
         } catch (NoSuchElementException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
